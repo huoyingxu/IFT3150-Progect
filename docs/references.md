@@ -87,4 +87,8 @@ title: Travail réalisé
 
 ## Références
 
-> Ajoutez vos références ci-dessous en utilisant une présentation cohérente.
+**Robert Williams Billings.** *The Power of Form Applied to Geometric Tracery*. W. Blackwood and Sons, 1851.
+
+[View the reference illustrations on Internet Archive](https://archive.org/details/powerofformappli00bill_0/page/n31/mode/2up).
+
+This book provides reference examples of geometric tracery and its underlying constructions. Its illustrations help guide the analysis of circles, symmetry, and tangency relationships used in the project's parametric modeling approach.
