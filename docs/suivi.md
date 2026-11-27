@@ -85,3 +85,47 @@ Reimplemented the functionality developed during the previous weeks as visual co
 ![Visual control modules connected in a dependency graph, alongside the generated circle pattern.](assets/images/week-4-control-modules.png)
 
 *Week 4 prototype: connected control modules on the left and the resulting geometry on the right.*
+
+---
+
+## Bilan de période (2 octobre–6 novembre 2026)
+
+### Objectifs de la période
+
+- Extend the visual prototype to construct rose-window patterns from reusable circles, arcs, tangency constraints, and rotational symmetry.
+- Preserve construction dependencies when source parameters change.
+- Make the node graph easier to understand and prepare an accessible prototype for the second project presentation.
+
+### Travail réalisé
+
+**Geometric construction.** Added self-tangent circle groups, gap circles, and circles defined by three tangency constraints. These operations allow simple circles and groups to serve as inputs to more complex constructions, rather than requiring every circle to be positioned manually.
+
+**Arc construction and display.** Added arc construction, solid/dashed/hidden arc styles, and rotational arc groups. A single arc can be repeated around a reference center to build a symmetric pattern. Display controls make it possible to distinguish construction geometry from the portions intended to remain visible.
+
+**Parametric dependencies.** Revised circle references to use a source node ID and member index. When a source parameter such as `nRosy` changes, dependent constructions retrieve the updated source circles and recompute their constraints. For example, a circle defined by tangency to members of a group can update when that group changes from three to four members, provided the referenced members and a valid selected solution still exist.
+
+**Node graph structure.** Separated geometry nodes from function nodes. Geometry nodes describe circles, groups, and their properties; function nodes specify construction inputs and constraints. The graph now makes the sequence **Geometry → Function → Geometry** explicit, for example **Circle → Self tangent → Circle group**. Automatic graph layout improves the readability of the connections and makes reuse of a result by several operations easier to identify.
+
+**Online prototype.** Published the geometric construction application on GitHub Pages by November 6, so it can be accessed without running a local server: [Graph Creater](https://huoyingxu.github.io/IFT3150/). The live application continues to evolve after this reporting period.
+
+### Difficultés rencontrées et solutions
+
+Two main difficulties guided the changes during this period:
+
+- **Dependencies became invalid when `nRosy` changed.** Dependent constructions could disappear when the source group changed. Identifying source members by node ID and member index allowed valid references to be resolved against the updated geometry. This preserves the construction relationship, but does not guarantee a solution when a referenced member disappears or the constraints become incompatible.
+- **Operations and results were mixed in the same node.** This made construction history and responsibilities difficult to read. Separating geometry and function nodes clarified inputs, outputs, and reuse, and made unexpected results easier to trace back to their construction steps.
+
+### Résultat de la période
+
+By the second presentation, the project had an online, node-based prototype capable of combining circles and arcs into reusable geometric constructions, updating dependent geometry, and displaying selected arc portions. The main achievement was a clearer construction model that supports parameter-driven variations of rose-window patterns.
+
+### Prochaines étapes envisagées au 6 novembre
+
+- Develop an interactive editor for selecting points, lines, and other geometric elements directly on the canvas to create custom constructions.
+- Explore AI-assisted rendering that relates geometric frameworks to real rose-window images while preserving their underlying structure.
+
+These were planned directions at the time of the second presentation, rather than completed features for this reporting period.
+
+### Présentation de la deuxième mise en commun
+
+[Download the second project presentation (PowerPoint)](assets/presentations/phase-2-november-2026.pptx)
