@@ -129,3 +129,49 @@ These were planned directions at the time of the second presentation, rather tha
 ### Présentation de la deuxième mise en commun
 
 [Download the second project presentation (PowerPoint)](assets/presentations/phase-2-november-2026.pptx)
+
+---
+
+## Bilan de période (7–27 novembre 2026)
+
+### Objectifs de la période
+
+- Implement the interactive canvas editor proposed during the second presentation.
+- Reuse editing operations across symmetric groups and retain them when construction parameters change.
+- Extend circle construction to configurable constraints and improve the workflow for selecting geometric inputs.
+
+### Travail réalisé
+
+**Direct canvas editing.** Added an editor for selecting circle centers and geometric intersections, connecting two selected points with a segment, and applying solid, dashed, or hidden styles. Lines can be extended in both directions to find additional intersections with existing geometry. These extensions are visible only in editor mode, while their construction intersections can be reused as inputs to subsequent operations.
+
+**Arc construction and selection.** Added canvas picking for arc centers and endpoints, including points constructed in the editor. These inputs retain references to their source geometry so that they can be recomputed. Users can switch between alternative arc paths connecting the same endpoints, including paths containing intermediate intersections. A further command keeps the selected arc visible and hides the remaining portions of its circle, avoiding repeated manual hiding.
+
+**Similar segments and parametric updates.** Added operations to hide corresponding segments and create corresponding connections across construction groups, with preview and undo support. Matching now takes the parent construction group into account. Connection endpoints are resolved from updated source geometry, and persistent editing rules are reevaluated when symmetry changes. This extends the earlier dependency handling to canvas edits and repeated connections, including the transition from `nRosy = 3` to `nRosy = 4`.
+
+**Unified circle constraints.** Combined the earlier three-tangency tool and the center-on-circle construction into one configurable workflow. Users choose three constraint types, pick the corresponding geometry on the canvas, and select a valid candidate solution. Available types include tangency to a circle, passing through a point, center on a circle, center on a line, and fixed radius. Presets cover common combinations, such as three tangencies or center on circle + tangency + through point. Hover highlighting and guided picking make the selected inputs easier to identify.
+
+**Rendering preview.** Added a toggle between the editable geometric framework and an engraved-style preview. This is a procedural 2D visualization; it is not a completed 3D model or AI-generated rendering.
+
+### Difficultés rencontrées et solutions
+
+- **Edits were lost or displaced after changing symmetry.** Connections and styles tied to previous geometry did not always follow the new construction. Resolving endpoints from live source references and retaining group-based editing rules improved their behavior when group membership changed.
+- **Similar-segment matching selected the wrong arcs.** Matching needed to distinguish corresponding portions within their parent groups. Using construction context improved the consistency of repeated hiding and connection operations.
+- **Editor points were unavailable to arc construction.** Construction intersections were integrated into the arc input workflow so that extended lines can contribute reusable points without remaining visible outside editor mode.
+- **Selecting and hiding arc portions required too many steps.** Alternative-path selection and the command to keep only a selected arc reduced the need to edit every remaining segment individually.
+
+### Résultat de la période
+
+The prototype now supports direct geometric construction and editing on the canvas, reusable operations across symmetric groups, and a unified circle-constraint workflow. The third presentation illustrates these improvements with canvas screenshots and a comparison of the patterns for `nRosy = 3` and `nRosy = 4`.
+
+Core behavior and regression checks supported these changes. Numerical robustness and cases where the construction topology changes still require broader validation; not every combination of constraints has a valid or unique solution.
+
+### Prochaines étapes
+
+- Save and reload complete projects, including construction dependencies and editing rules.
+- Improve handling of degenerate constraints and stability of solution selection.
+- Add a dedicated SVG export workflow for external modeling tools.
+- Develop detailed three-dimensional ornament in Blender. The current engraved preview remains a 2D step toward this goal.
+
+### Présentation de la troisième mise en commun
+
+[Download the third project presentation (PowerPoint, 5 slides)](assets/presentations/phase-3-november-2026.pptx)
