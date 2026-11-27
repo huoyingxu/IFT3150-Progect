@@ -88,7 +88,7 @@ Reimplemented the functionality developed during the previous weeks as visual co
 
 ---
 
-## Bilan de période (2 octobre–6 novembre 2026)
+## Période 2 (2 octobre–6 novembre 2026)
 
 ### Objectifs de la période
 
@@ -132,7 +132,7 @@ These were planned directions at the time of the second presentation, rather tha
 
 ---
 
-## Bilan de période (7–27 novembre 2026)
+## Période 3 (7–27 novembre 2026)
 
 ### Objectifs de la période
 
